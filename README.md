@@ -9,19 +9,19 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 
 ## Installation
 ### Server
-
+```bash
 yum install epel-release
 yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum install -y yum-utils
 yum-config-manager --disable remi-php54
 yum-config-manager --enable remi-php73
 yum install php composer httpd unzip mc
-
+```
 ### CakeRR
-
+```bash
 cd /var/www
 composer create-project cscfi/cakephp-rr cakephp-rr --stability dev
-
+```
 1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
 2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
 
@@ -56,11 +56,11 @@ automated upgrades, so you have to do any updates manually.
 
 Read and edit `config/app.php` and setup the `'Datasources'` and any other
 configuration relevant for your application. You also need following defined here.
-
+```
 'client_secret' => '<SECRET>',
 'auth_url' => 'https://<HOST>/',
 'redirect_url' => 'https://<HOST>/',
-
+```
 ## Layout
 
 The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
