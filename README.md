@@ -1,49 +1,57 @@
-# CakePHP Application Skeleton
+# CakePHP Resource Registry
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
-
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 3.x.
-
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+CakePHP resource registry for managing OIDC Relying Parties with User authentication and oidc metadata file publishing for Shibboleth IdP OIDC extension.
 
 ## Installation
 ### Server
-
+```bash
 yum install epel-release
 yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum install -y yum-utils
 yum-config-manager --disable remi-php54
 yum-config-manager --enable remi-php73
 yum install php composer httpd unzip mc
-
+```
 ### CakeRR
 
+1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+
+#### Install CakePHP project
+```
 cd /var/www
 composer create-project cscfi/cakephp-rr cakephp-rr --stability dev
-
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
-
-If Composer is installed globally, run
-
-```bash
-composer create-project --prefer-dist cakephp/app
+```
+#### Create logs/tmp directories and configure selinux for em
+```
+chown apache /var/www/html/logs -R
+chown apache /var/www/html/tmp -R
+chcon --type httpd_sys_rw_content_t /var/www/html/logs/ -R
+chcon --type httpd_sys_rw_content_t /var/www/html/tmp/ -R
+```
+#### configure Apache web server
+```
+systemctl start httpd
+systemctl enable httpd
 ```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-composer create-project --prefer-dist cakephp/app myapp
+#### edit /etc/httpd/conf/httpd.conf for allowing .htaccess files
 ```
-
+<Directory /var/www/html>
+    AllowOverride All
+ </Directory>
+```
+#### Configure database
+```
+systemctl start mariadb
+systemctl enable mariadb
+mysql_secure_installation
+```
 You can now either use your machine's webserver to view the default home page, or start
 up the built-in webserver with:
 
 ```bash
 bin/cake server -p 8765
 ```
-
 Then visit `http://localhost:8765` to see the welcome page.
 
 ## Update
@@ -56,10 +64,14 @@ automated upgrades, so you have to do any updates manually.
 
 Read and edit `config/app.php` and setup the `'Datasources'` and any other
 configuration relevant for your application. You also need following defined here.
-
+```
 'client_secret' => '<SECRET>',
 'auth_url' => 'https://<HOST>/',
 'redirect_url' => 'https://<HOST>/',
+```
+
+# Migrate database schema
+`./bin/cake migrations migrate`
 
 ## Layout
 
