@@ -11,7 +11,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('response_type') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?>
+                     [<?= $this->Html->link(__('Add'), ['action' => 'add']) ?>]
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -38,4 +40,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+OPEQ
 </div>

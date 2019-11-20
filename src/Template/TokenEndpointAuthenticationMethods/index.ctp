@@ -11,7 +11,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('token_endpoint_authentication_method') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?>
+                    [<?= $this->Html->link(__('Add'), ['action' => 'add']) ?>]
+                </th>
             </tr>
         </thead>
         <tbody>

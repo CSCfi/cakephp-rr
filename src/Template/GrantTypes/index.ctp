@@ -11,7 +11,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('grant_type') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?>
+                    [<?= $this->Html->link(__('Add'), ['action' => 'add']) ?>]
+                </th>
             </tr>
         </thead>
         <tbody>
