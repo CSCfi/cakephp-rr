@@ -34,9 +34,9 @@ class RpsController extends AppController
     public function index()
     {
 				if ($this->Auth->user('status')=='admin')
-					$query = $this->Rps->find('all');
+					$query = $this->Rps->find('all')->contain(['Federations']);
 				else
-					$query = $this->Rps->find('all')->matching('Users', function ($q) {return $q->where(['Users.id' => $this->Auth->user('id')]);});
+					$query = $this->Rps->find('all')->contain(['Federations'])->matching('Users', function ($q) {return $q->where(['Users.id' => $this->Auth->user('id')]);});
 				
 			  $this->set('rps', $this->paginate($query));
     }

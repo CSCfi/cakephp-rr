@@ -9,10 +9,10 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('client_identifier') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('client_secret') ?></th>
+                <th scope="col" width="50px"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('client_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Federations') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('client_identifier') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -20,9 +20,12 @@
             <?php foreach ($rps as $rp): ?>
             <tr>
                 <td><?= $this->Number->format($rp->id) ?></td>
-                <td><?= h($rp->client_identifier) ?></td>
-                <td><?= h($rp->client_secret) ?></td>
                 <td><?= h($rp->client_name) ?></td>
+                <td><?php foreach ($rp->federations as $federation) : 
+                                echo $federation->name. " # ";
+                    endforeach;?>
+                </td>
+                <td><?= h($rp->client_identifier) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $rp->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $rp->id]) ?>
