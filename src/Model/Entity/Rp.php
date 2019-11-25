@@ -37,6 +37,9 @@ class Rp extends Entity
       	'users' => true,
        	'federations' => true,
       	'token_endpoint_auth_method' => true,
-        'token_endpoint_authentication_methods' => true
+        'token_endpoint_authentication_methods' => true,
+        'contacts' => true,
+        'initiate_login_uri' => true,
+        'policy_uri' => true
     ];
 }

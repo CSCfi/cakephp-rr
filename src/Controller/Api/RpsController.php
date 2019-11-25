@@ -53,7 +53,9 @@ class RpsController extends AppController
 				$client['response_types'] = $response_types;
         //if (!empty($token_endpoint_authentication_methods)) $client['token_endpoint_auth_method'] = $token_endpoint_authentication_methods;
         if (!empty(array_filter($redirect_uris))) $client['redirect_uris'] = array_filter($redirect_uris);
-				if ($row['token_endpoint_auth_method']) $client['token_endpoint_auth_method'] = $row['token_endpoint_auth_method'];
+                if ($row['token_endpoint_auth_method']) $client['token_endpoint_auth_method'] = $row['token_endpoint_auth_method'];
+                if ($row['policy_uri']) $client['policy_uri'] = $row['policy_uri'];
+                if ($row['initiate_login_uri']) $client['initiate_login_uri'] = $row['initiate_login_uri'];
 				$clients[] = $client;
 			}
       $this->set('_jsonOptions', JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES );

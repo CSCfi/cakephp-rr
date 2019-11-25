@@ -52,7 +52,7 @@
         </table>
         <?php endif; ?>
     </div>
-    <div class="related">
+    <div id="note" class="related note">
         <h4><?= __('Related Response Types') ?></h4>
         <?php if (!empty($rp->response_types)): ?>
         <table cellpadding="0" cellspacing="0">
