@@ -28,16 +28,21 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller
 {
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['display']);
+    }
+    
     public function isAuthorized()
     {
       // Admin can access every action
       if ($this->Auth->user('status') === 'admin') {
           return true;
-      }
-
+      } 
       if (in_array($this->request->getParam('action'), ['index','logout','login','rps','api'])) {
         return true;
       }
+
     }
 
     /**
@@ -67,7 +72,7 @@ class AppController extends Controller
         $this->loadComponent('Auth', [
           'authorize' => ['Controller'],
           'loginRedirect' => array('controller' => 'rps','action' => 'index'),
-          'logoutRedirect' => array('controller' => 'users','action' => 'login'),
+          'logoutRedirect' => array('controller' => 'pages','action' => 'display','home'),
           'authenticate' => [
             'Muffin/OAuth2.OAuth' => [
               'providers' => [

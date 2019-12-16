@@ -28,7 +28,7 @@
             <td><?= nl2br($rp->redirect_uris) ?></td>
         </tr>
     </table>
-    <div class="related">
+    <div id="note" class="related">
         <h4><?= __('Related Grant Types') ?></h4>
         <?php if (!empty($rp->grant_types)): ?>
         <table cellpadding="0" cellspacing="0">
