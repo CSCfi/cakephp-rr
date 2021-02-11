@@ -41,14 +41,20 @@ class RpsController extends AppController
 			  $this->set('rps', $this->paginate($query));
     }
 
-		public function index2()
+/*		public function index2()
     {
 				$this->autoRender = false;
         $rps = $this->paginate($this->Rps);
 				echo json_encode(compact('rps'));
 //				$this->set('_serialize', 'rps');
-    }
+    }*/
 
+    public function list($federation_id=null)
+    { $this->layout = false;
+      if ($federation_id==0) die();
+      $query = $this->Rps->find('all',['contain' => ['GrantTypes', 'ResponseTypes', 'Scopes','Federations','TokenEndpointAuthenticationMethods']])->matching('Federations', function ($q) use ($federation_id) {return $q->where(['Federations.id' => $federation_id]);});
+      $this->set('rps', $query);
+    }
 
     /**
      * View method

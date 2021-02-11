@@ -15,10 +15,10 @@ use Cake\Utility\Hash;
 class RpsController extends AppController
 {
 
-		public function initialize()
+    public function initialize()
     {
        parent::initialize();
-       if (($this->Auth->user('status') === 'admin') || (in_array($this->request->clientIp(),['86.50.55.18','86.50.55.113','86.50.27.106','86.50.168.221','86.50.55.117']))) {
+       if (($this->Auth->user('status') === 'admin') || (in_array($this->request->clientIp(),['86.50.55.18','86.50.55.113','86.50.27.106','86.50.168.221','86.50.55.117','86.50.27.133','86.50.27.206','86.50.55.235']))) {
           $this->Auth->allow(['index']);
        } else {
           throw new ForbiddenException(); 
@@ -31,7 +31,7 @@ class RpsController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {	
+    {
       $federation_id = $this->request->getQuery('fdid');
       if ($federation_id==0) die();
       $query = $this->Rps->find('all',['contain' => ['GrantTypes', 'ResponseTypes', 'Scopes','Federations','TokenEndpointAuthenticationMethods']])->matching('Federations', function ($q) use ($federation_id) {return $q->where(['Federations.id' => $federation_id]);});
