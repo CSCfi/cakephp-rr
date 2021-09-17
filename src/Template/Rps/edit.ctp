@@ -13,7 +13,7 @@
             echo $this->Form->control('client_secret');
             echo $this->Form->control('client_name');
             echo $this->Form->control('policy_uri');
-            echo $this->Form->control('initiate_login_uri');
+            echo $this->Form->control('initiate_login_uri',['label'=>'Initiate login uri (https://)']);
             echo $this->Form->control('redirect_uris',['type' => 'textarea']);
             echo $this->Form->control('contacts',['type' => 'textarea']);
             echo $this->Form->control('token_endpoint_auth_method',['options' => [''=>'Default','client_secret_post' => 'client_secret_post','client_secret_basic' => 'client_secret_basic','client_secret_jwt' => 'client_secret_jwt','private_key_jwt' => 'private_key_jwt','tls_client_auth' => 'tls_client_auth','self_signed_tls_client_auth' => 'self_signed_tls_client_auth']]);

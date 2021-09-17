@@ -30,7 +30,7 @@ class AppController extends Controller
 {
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['display','list']);
+        $this->Auth->allow(['display','list','listcsv']);
     }
     
     public function isAuthorized()

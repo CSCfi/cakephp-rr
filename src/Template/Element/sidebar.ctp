@@ -17,6 +17,7 @@
           <li><?= $this->Html->link(__('CSC AAI'), ['controller' => 'api', 'action' => 'rps.json?fdid=1']) ?></li>
           <li><?= $this->Html->link(__('CSC AAI Test'), ['controller' => 'api', 'action' => 'rps.json?fdid=2']) ?></li>
           <li><?= $this->Html->link(__('Haka OIDC Test'), ['controller' => 'api', 'action' => 'rps.json?fdid=3']) ?></li>
+          <li><?= $this->Html->link(__('CSC IdP Internal'), ['controller' => 'api', 'action' => 'rps.json?fdid=4']) ?></li>
 				<?php endif; ?>
     </ul>
 </nav>

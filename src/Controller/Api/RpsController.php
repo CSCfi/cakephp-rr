@@ -18,7 +18,7 @@ class RpsController extends AppController
     public function initialize()
     {
        parent::initialize();
-       if (($this->Auth->user('status') === 'admin') || (in_array($this->request->clientIp(),['86.50.55.18','86.50.55.113','86.50.27.106','86.50.168.221','86.50.55.117','86.50.27.133','86.50.27.206','86.50.55.235']))) {
+       if (($this->Auth->user('status') === 'admin') || (in_array($this->request->clientIp(),['86.50.55.18','86.50.55.113','86.50.27.106','86.50.168.221','86.50.55.117','86.50.27.133','86.50.27.206','86.50.55.235','193.166.25.191','86.50.55.123','86.50.55.17']))) {
           $this->Auth->allow(['index']);
        } else {
           throw new ForbiddenException(); 

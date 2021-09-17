@@ -56,6 +56,13 @@ class RpsController extends AppController
       $this->set('rps', $query);
     }
 
+    public function listcsv($federation_id=null)
+    { $this->layout = false;
+      if ($federation_id==0) die();
+      $query = $this->Rps->find('all',['contain' => ['GrantTypes', 'ResponseTypes', 'Scopes','Federations','TokenEndpointAuthenticationMethods']])->matching('Federations', function ($q) use ($federation_id) {return $q->where(['Federations.id' => $federation_id]);});
+      $this->set('rps', $query);
+    }
+
     /**
      * View method
      *
